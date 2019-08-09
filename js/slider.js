@@ -3,6 +3,7 @@ $(document).ready(function(){
 		constructor(sliderEl, options = {
 			slidesToShow: 1,
 			slidesToChange: 1,
+			dots: true,
 			animate: false,
 			animationDelay: 1,
 			arrows: true
