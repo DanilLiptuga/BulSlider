@@ -4,7 +4,8 @@ $(document).ready(function(){
 			slidesToShow: 1,
 			slidesToChange: 1,
 			animate: false,
-			animationDelay: 1
+			animationDelay: 1,
+			arrows: true
 		}){
 			let self = this;
 			this.sliderView = sliderEl;
@@ -34,8 +35,25 @@ $(document).ready(function(){
 					}.bind(self));
 				});
 			}
-			$(this.sliderView).find('.left-arrow').click(this.slideToLeft.bind(this));
-			$(this.sliderView).find('.right-arrow').click(this.slideToRight.bind(this));
+			if (this.options.arrows) {
+				$(this.sliderView).append(`
+					<div class="arrows">
+					<div class="arrow left-arrow">
+					<svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8 1L1 8.37705L8 16" stroke="#6C7185"/>
+					</svg>
+					</div>
+					<div class="arrow right-arrow">
+					<svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8 1L1 8.37705L8 16" stroke="#6C7185"/>
+					</svg>
+
+					</div>
+					</div>
+					`)
+				$(this.sliderView).find('.left-arrow').click(this.slideToLeft.bind(this));
+				$(this.sliderView).find('.right-arrow').click(this.slideToRight.bind(this));
+			}
 
 			$(this.sliderView).find('.slider-viewport').on('touchstart', function(e){
 				this.touched = true;
@@ -121,7 +139,8 @@ $(document).ready(function(){
 		slidesToShow: 3,
 		slidesToChange: 3,
 		dots: true,
-		animate: true,
-		animationDelay: 3
+		animate: false,
+		animationDelay: 3,
+		arrows: true
 	});
 });

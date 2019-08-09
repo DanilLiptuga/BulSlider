@@ -65,19 +65,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="arrows">
-			<div class="arrow left-arrow">
-				<svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M8 1L1 8.37705L8 16" stroke="#6C7185"/>
-				</svg>
-			</div>
-			<div class="arrow right-arrow">
-				<svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M8 1L1 8.37705L8 16" stroke="#6C7185"/>
-				</svg>
-
-			</div>
-		</div>
 	</div>
 	<script
 	src="https://code.jquery.com/jquery-3.4.1.min.js"
