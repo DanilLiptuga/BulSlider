@@ -11,31 +11,10 @@ $(document).ready(function(){
 			let self = this;
 			this.sliderView = sliderEl;
 			this.options = options,
-			this.currentDot = 1;
-			this.slideLeft = 0;
-			this.prevDot = 1;
 			this.slidesNum = this.options.slidesToShow;
-			this.dotsNum = Math.ceil($(this.sliderView).find('.slide').length / this.options.slidesToChange);
 			$(this.sliderView).width((parseInt($(this.sliderView).find('.slide').width()) + parseInt($(this.sliderView).find('.slide').css('margin-right'))) * this.options.slidesToShow + this.options.slidesToShow - 1 - parseInt($(this.sliderView).find('.slide').css('margin-right')));
 			this.maxLeft = ($($(this.sliderView).find('.slide')[$(this.sliderView).find('.slide').length - 1]).offset().left + parseInt($($(this.sliderView).find('.slide')[$(this.sliderView).find('.slide').length - 1]).width()) - parseInt($(this.sliderView).width())) * (-1);
-			if (this.options.dots) {
-				this.dots = [];
-				$(this.sliderView).children('.dots').remove();
-				$(this.sliderView).append('<div class="dots"></div>');
-				for (let i = 0; i < this.dotsNum; i++) {
-					$(this.sliderView).children('.dots').append('<div class="dot"></div>');
-				}
-				$(this.sliderView).find('.dot').each(this.dotDeclare.bind(this));
-				this.slide_change();
-				$(this.dots[0]).addClass('active-dot');
-				this.dots.forEach(function(item, i) {
-					$(item).click(function(){
-						this.prevDot = this.currentDot;
-						this.currentDot = i + 1;
-						this.slide_change();
-					}.bind(self));
-				});
-			}
+			this.dotsPrint();
 			if (this.options.arrows) {
 				$(this.sliderView).append(`
 					<div class="arrows">
@@ -102,6 +81,30 @@ $(document).ready(function(){
 				}, this.options.animationDelay * 1000)
 			}
 		}
+		dotsPrint(){
+			this.currentDot = 1;
+			this.slideLeft = 0;
+			this.prevDot = 1;
+			this.dotsNum = Math.ceil($(this.sliderView).find('.slide').length / this.options.slidesToChange);
+			if (this.options.dots) {
+				this.dots = [];
+				$(this.sliderView).children('.dots').remove();
+				$(this.sliderView).append('<div class="dots"></div>');
+				for (let i = 0; i < this.dotsNum; i++) {
+					$(this.sliderView).children('.dots').append('<div class="dot"></div>');
+				}
+				$(this.sliderView).find('.dot').each(this.dotDeclare.bind(this));
+				this.slide_change();
+				$(this.dots[0]).addClass('active-dot');
+				this.dots.forEach(function(item, i) {
+					$(item).click(function(){
+						this.prevDot = this.currentDot;
+						this.currentDot = i + 1;
+						this.slide_change();
+					}.bind(self));
+				});
+			}
+		}
 		dotDeclare(index, item){
 			this.dots[index] = $(item);
 		}
@@ -137,8 +140,8 @@ $(document).ready(function(){
 		}
 	}
 	let slider3 = new Slider(document.querySelector('.slider3'), {
-		slidesToShow: 3,
-		slidesToChange: 3,
+		slidesToShow: 2,
+		slidesToChange: 1,
 		dots: true,
 		animate: false,
 		animationDelay: 3,
